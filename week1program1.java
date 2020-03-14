@@ -1,6 +1,6 @@
 import java.io.*;
 import java.util.*;
-class weekprogram1
+class week1program1
 {
     public static void main (String[] args)throws IOException {
         BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
@@ -30,16 +30,30 @@ class weekprogram1
     //minimum length  function
     public static int min(int n)
     {
-        int k=0;
+        int count=0;
         while(n>1)
         {
-	        if(n%2==1)
-		        n=n-1;
-            n=n>>1;
-            k=k+1;
+            if((n&1)==0)
+            {
+                n=n>>1;
+                count++;
+            }
+            else {
+            if (ispoweroftwo(n+1))
+                n = n + 1;
+            else if (ispoweroftwo(n - 1))
+                n = n - 1;
+            else
+                n = n - 1;
+            count++;
         }
-        //printing Output
-        return k;
+        }
+        return count;
+    }
+    //checks the number whether it is a power of not
+    public static boolean ispoweroftwo(int n)
+    {
+        return ((n&(n-1))==0);
     }
     //testing function
     public static void test(int a,int b)
